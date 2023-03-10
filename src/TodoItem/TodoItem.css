@@ -1,0 +1,44 @@
+
+.TodoItem {
+  width: 100%;
+  background-color: #fff;
+  margin: 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.TodoItem span.arrow_check,
+.TodoItem span.cross {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.TodoItem span.arrow_check,
+.TodoItem span.cross {
+  font-size: 20px;
+}
+.TodoItem span.arrow_check.active {
+  background-color: #5D9C59;
+  color: #fff;
+}
+
+.TodoItem span.cross:hover {
+  background-color: #DF2E38;
+  color: #fff;
+  cursor: pointer;
+}
+
+.TodoItem p {
+  font-size: 24px;
+}
+
+.TodoItem p.done {
+  text-decoration: line-through;
+}
