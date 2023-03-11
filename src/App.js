@@ -24,8 +24,11 @@ function App( props ) {
       <TodoList>
         { 
           todos
-            .map( 
-            todo => <TodoItem text={ todo.text } key={ todo.text } completed={ todo.completed }/> 
+            .map(  todo => <TodoItem 
+              text={ todo.text } 
+              key={ todo.text } 
+              completed={ todo.completed }
+            /> 
           ) 
         }
       </TodoList>
