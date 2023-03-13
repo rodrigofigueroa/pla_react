@@ -19,16 +19,14 @@ import './TodoSearch.css'
 //   }
 // }
 
-const TodoSearch = () => {
+const TodoSearch = ({ search, setSearch }) => {
 
-  const [ search, setSearch ] = React.useState( '' )
-  
   const onHandleSearch = ( e ) => {
-    // console.log( e.target.value )
+    console.log( e.target.value )
     setSearch( e.target.value )
   }
 
-  return [
+  return (
     <input 
       placeholder="Cebolla" 
       className='TodoSearch' 
@@ -36,11 +34,8 @@ const TodoSearch = () => {
       name='search' 
       id="search" 
       onChange={ onHandleSearch }
-    />,
-    <p style={{
-      color: '#fff'
-    }}> { search } </p>
-  ]
+    />
+    )
 }
 
 export { TodoSearch }

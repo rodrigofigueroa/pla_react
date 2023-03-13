@@ -6,9 +6,12 @@ import './TodoCounter.css'
 //   textAlign: 'center'
 // }
 
-const TodoCounter = () => {
+const TodoCounter = ({ total, totalCompleted }) => {
+  // const { total, totalCompleted } = props
   return (
-    <h1 className="todo_title" >Hiciste 2 de 3</h1>
+    <h1 className="todo_title" >
+      Completaste { totalCompleted } de { total }
+    </h1>
   )
 }
 
