@@ -24,7 +24,7 @@ function App() {
   const regexSearch = new RegExp(`${ search }`,'gi')
   
   const toSearch = todos.filter( todo => regexSearch.test( todo.text ))
-  let todosFilter = ( search.length >= 1 ) ? toSearch : todosFilter = todos
+  let todosFilter = ( search.length >= 1 ) ? toSearch :  todos
   
   return (
     <React.Fragment> { /* <></> */}
@@ -42,10 +42,13 @@ function App() {
       <TodoList>
         {
           todosFilter
-              .map(  todo => <TodoItem 
+              .map(  (todo, idx ) => <TodoItem 
                 text={ todo.text } 
                 key={ todo.text } 
                 completed={ todo.completed }
+                todos={ todos }
+                setTodos={ setTodos }
+                id={ idx }
               /> 
             ) 
         }
