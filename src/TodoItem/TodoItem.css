@@ -9,7 +9,9 @@
   padding: 20px;
   border-radius: 8px;
 }
-
+.TodoItem span {
+  cursor: pointer;
+}
 .TodoItem span.arrow_check,
 .TodoItem span.cross {
   width: 30px;

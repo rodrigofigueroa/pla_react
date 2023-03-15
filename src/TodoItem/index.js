@@ -2,7 +2,7 @@ import React from 'react'
 import './TodoItem.css'
 
 export const TodoItem = ( props ) => {
-  const { todos, setTodos, id } = props 
+  const { todos, setTodos, id, completeTodo, deleteTodo } = props 
 
   const onHandleCompleted = ( e ) => {
     console.log( `Completaste todo ${ props.text }` )
@@ -21,7 +21,7 @@ export const TodoItem = ( props ) => {
     // Array.from( Array )
     // [ ...todos ]
     const todosSpl = [ ...todos ]
-    const newTodosSplice = todosSpl.splice( id, 1 )
+    todosSpl.splice( id, 1 )
     setTodos( todosSpl )
   }
 
@@ -30,7 +30,8 @@ export const TodoItem = ( props ) => {
       
       <span 
         className={ `arrow_check ${ props.completed ? 'active' : '' }` }
-        onClick={ onHandleCompleted }
+        // onClick={ onHandleCompleted }
+        onClick={ completeTodo }
         >
           ✓
       </span>
@@ -43,7 +44,8 @@ export const TodoItem = ( props ) => {
       
       <span 
         className={ `cross ${ props.completed ? '' : '' }` }
-        onClick={ onHandleDelete }
+        // onClick={ onHandleDelete }
+        onClick={ deleteTodo }
         >
           x
       </span>

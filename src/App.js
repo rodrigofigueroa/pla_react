@@ -24,7 +24,23 @@ function App() {
   const regexSearch = new RegExp(`${ search }`,'gi')
   
   const toSearch = todos.filter( todo => regexSearch.test( todo.text ))
-  let todosFilter = ( search.length >= 1 ) ? toSearch :  todos
+  let todosFilter = ( search.length >= 1 ) ? toSearch : todos
+
+  const completeTodo = ( text ) => {
+    let newTodos = [ ...todos ]
+    const positionTodo = newTodos.findIndex( todo => todo.text === text )
+    
+    todos[ positionTodo ].completed = true
+
+    setTodos( newTodos )
+  }
+
+  const deleteTodo = ( text ) => {
+    let newTodo = Array.from( todos )
+    const positionTodo = newTodo.findIndex( todo => todo.text === text )
+    newTodo.splice( positionTodo, 1 )
+    setTodos( newTodo )
+  }
   
   return (
     <React.Fragment> { /* <></> */}
@@ -49,6 +65,8 @@ function App() {
                 todos={ todos }
                 setTodos={ setTodos }
                 id={ idx }
+                completeTodo={() => completeTodo( todo.text )}
+                deleteTodo={ () => deleteTodo( todo.text ) }
               /> 
             ) 
         }
