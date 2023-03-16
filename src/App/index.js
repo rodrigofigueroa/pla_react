@@ -1,9 +1,5 @@
-import React                from 'react'
-import { TodoCounter }      from './TodoCounter'
-import { TodoSearch }       from './TodoSearch'
-import { TodoList }         from './TodoList'
-import { TodoItem }         from './TodoItem'
-import { TodoCreateButton } from './TodoCreateButton'
+import React        from 'react'
+import { IndexUI }  from './indexUI'
 import './App.css';
 
 const todosDefault = [
@@ -43,38 +39,17 @@ function App() {
   }
   
   return (
-    <React.Fragment> { /* <></> */}
-      
-      <TodoCounter 
-        total={ total }
-        totalCompleted={ totalCompleted }
-      />
-
-      <TodoSearch 
-        search={ search } 
-        setSearch={ setSearch }
-      />
-      
-      <TodoList>
-        {
-          todosFilter
-              .map(  (todo, idx ) => <TodoItem 
-                text={ todo.text } 
-                key={ todo.text } 
-                completed={ todo.completed }
-                todos={ todos }
-                setTodos={ setTodos }
-                id={ idx }
-                completeTodo={() => completeTodo( todo.text )}
-                deleteTodo={ () => deleteTodo( todo.text ) }
-              /> 
-            ) 
-        }
-      </TodoList>
-
-      <TodoCreateButton />
-
-    </React.Fragment>
+    <IndexUI 
+      total={ total }
+      totalCompleted={ totalCompleted }
+      search={ search }
+      setSearch={ setSearch }
+      todosFilter={ todosFilter }
+      todos={ todos }
+      setTodos={ setTodos }
+      completeTodo={ completeTodo }
+      deleteTodo={ deleteTodo }
+    />    
   );
 }
 
