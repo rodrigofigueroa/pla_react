@@ -15,7 +15,7 @@ function useSaveInLocalStorage ( saveItem, valueItem ) {
 
   if( !getTodosLocalStorage ){    
     
-    window.localStorage.setItem( saveItem, valueItem )
+    window.localStorage.setItem( saveItem, JSON.stringify( valueItem ) )
     saveLocalItem = valueItem
 
   } else {
@@ -44,7 +44,8 @@ function App() {
   // debugger
   
   const [ search, setSearch ] = React.useState( '' )
-  const [ todos, setTodos ] = useSaveInLocalStorage( 'TODOS_V1', '[{ "text": "Cortar Cebollas", "completed": false }]' )  
+  const [ todos, setTodos ] = useSaveInLocalStorage( 'TODOS_V1', [{ "text": "Cortar Cebollas", "completed": false }] )  
+  const [ item, setItem ] = useSaveInLocalStorage( 'PATITO_V1', 'PATITO' )  
 
   const totalCompleted = todos.filter( todo => !!todo.completed ).length
   const total = todos.length
@@ -73,6 +74,8 @@ function App() {
   }
   
   return (
+    [
+      <p>{item}</p>,
     <IndexUI 
       total={ total }
       totalCompleted={ totalCompleted }
@@ -83,7 +86,7 @@ function App() {
       setTodos={ setTodos }
       completeTodo={ completeTodo }
       deleteTodo={ deleteTodo }
-    />
+    />]
   )
 }
 
