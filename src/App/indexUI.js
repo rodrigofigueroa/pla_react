@@ -6,6 +6,8 @@ import { TodoItem }         from '../TodoItem'
 import { TodoCreateButton } from '../TodoCreateButton'
 
 const IndexUI = ({
+  loading,
+  error,
   total,
   totalCompleted,
   search,
@@ -28,6 +30,10 @@ const IndexUI = ({
         search={ search } 
         setSearch={ setSearch }
       />
+
+      { error && <p>There was an error with your petition</p> }
+      { loading && <p>Loading...</p> }
+      { ( !loading && !total ) && <p>Please add a To DO!</p> }
       
       <TodoList>
         {

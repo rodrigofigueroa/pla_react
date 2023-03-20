@@ -1,6 +1,6 @@
 import React        from 'react'
 import { IndexUI }  from './indexUI'
-import './App.css';
+import './App.css'
 
 // const defaultTodos = [
 //   { text: 'Cortar Cebollas', completed: false },
@@ -10,33 +10,65 @@ import './App.css';
 
 function useSaveInLocalStorage ( saveItem, valueItem ) {
 
-  const getTodosLocalStorage = window.localStorage.getItem( saveItem )
-  let saveLocalItem
+  const [ items, setItems ] = React.useState( valueItem )
+  const [ error, setError ] = React.useState( false )
+  const [ loading, setLoading ] = React.useState( true )
 
-  if( !getTodosLocalStorage ){    
-    
-    window.localStorage.setItem( saveItem, JSON.stringify( valueItem ) )
-    saveLocalItem = valueItem
+  React.useEffect(() => {
+    setTimeout(() =>{
 
-  } else {
-    saveLocalItem = JSON.parse( getTodosLocalStorage ) 
-  }
+      try {
+        
+        const getTodosLocalStorage = window.localStorage.getItem( saveItem )
+        let saveLocalItem
+      
+        if( !getTodosLocalStorage ){    
+          
+          window.localStorage.setItem( saveItem, JSON.stringify( valueItem ) )
+          saveLocalItem = valueItem
+          
+        } else {
+          saveLocalItem = JSON.parse( getTodosLocalStorage ) 
+          
+        }
+        
+        setItems( saveLocalItem )
+        setLoading( false )
+        
+      } catch ( error ) { 
+        console.error( 'There was an error' )
+        setError(error)
+      }
+      
 
-  const [ items, setItems ] = React.useState( saveLocalItem )
+    }, 1000 )
+  })
+
+
+  
 
   const stringifiedAndUpdateState = ( newTodos ) => {
+
+    try {
+
+      const newTodosStringifing = JSON.stringify( newTodos )
+      
+      window.localStorage.setItem( saveItem, newTodosStringifing )
+      
+      setItems( newTodos )
+    } catch ( error ) {
+      console.log( error )
+      setError( error )
+    }
     
-    const newTodosStringifing = JSON.stringify( newTodos )
-    
-    window.localStorage.setItem( saveItem, newTodosStringifing )
-    
-    setItems( newTodos )
   }
 
-  return [
+  return {
     items,
-    stringifiedAndUpdateState
-  ]
+    stringifiedAndUpdateState,
+    loading,
+    error
+  }
 
 }
 
@@ -44,8 +76,13 @@ function App() {
   // debugger
   
   const [ search, setSearch ] = React.useState( '' )
-  const [ todos, setTodos ] = useSaveInLocalStorage( 'TODOS_V1', [{ "text": "Cortar Cebollas", "completed": false }] )  
-  const [ item, setItem ] = useSaveInLocalStorage( 'PATITO_V1', 'PATITO' )  
+  const { 
+    items: todos, 
+    stringifiedAndUpdateState: setTodos,
+    loading,
+    error
+  } = useSaveInLocalStorage( 'TODOS_V1', [] )  
+  // const [ item, setItem ] = useSaveInLocalStorage( 'PATITO_V1', 'PATITO' )  
 
   const totalCompleted = todos.filter( todo => !!todo.completed ).length
   const total = todos.length
@@ -72,11 +109,19 @@ function App() {
     newTodo.splice( positionTodo, 1 )
     setTodos( newTodo )
   }
+
+  // console.log( 'before UseEffect ')
+  
+  // React.useEffect(() => {
+  //   console.log('Use Effect :)')
+  // }, [])
+
+  // console.log( 'After UseEffect ')
   
   return (
-    [
-      <p>{item}</p>,
     <IndexUI 
+      loading={ loading }
+      error={ error }
       total={ total }
       totalCompleted={ totalCompleted }
       search={ search }
@@ -86,7 +131,7 @@ function App() {
       setTodos={ setTodos }
       completeTodo={ completeTodo }
       deleteTodo={ deleteTodo }
-    />]
+    />
   )
 }
 
