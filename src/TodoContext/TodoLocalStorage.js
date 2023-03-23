@@ -7,22 +7,24 @@ function useSaveInLocalStorage ( saveItem, valueItem ) {
   const [ loading, setLoading ] = React.useState( true )
 
   React.useEffect(() => {
-    setTimeout(() =>{
+    // debugger
+    // setTimeout(() =>{
 
       try {
         
         const getTodosLocalStorage = window.localStorage.getItem( saveItem )
         let saveLocalItem
-      
-        if( !getTodosLocalStorage ){
+
+        if( !getTodosLocalStorage ){        
           
-          window.localStorage.setItem( saveItem, JSON.stringify( valueItem ) )
-          saveLocalItem = valueItem
-          
-        } else {
-          saveLocalItem = JSON.parse( getTodosLocalStorage ) 
-          
-        }
+            window.localStorage.setItem( saveItem, JSON.stringify( valueItem ) )
+            saveLocalItem = valueItem
+            
+        }  else {
+            saveLocalItem = JSON.parse( getTodosLocalStorage ) 
+            
+          }
+        
         
         setItems( saveLocalItem )
         setLoading( false )
@@ -33,8 +35,9 @@ function useSaveInLocalStorage ( saveItem, valueItem ) {
       }
       
 
-    }, 1000 )
-  })
+    // }, 1000 )
+    
+  }, [])
 
 
   
