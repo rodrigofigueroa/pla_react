@@ -1,4 +1,5 @@
-import React from 'react'
+import React            from 'react'
+import { TodoContext }  from '../TodoContext'
 import './TodoSearch.css'
 
 // class Component extends React.Component {
@@ -19,7 +20,9 @@ import './TodoSearch.css'
 //   }
 // }
 
-const TodoSearch = ({ search, setSearch }) => {
+const TodoSearch = () => {
+
+  const { search, setSearch } = React.useContext( TodoContext )
 
   const onHandleSearch = ( e ) => {
     console.log( e.target.value )

@@ -3,7 +3,6 @@ import { useSaveInLocalStorage }  from './TodoLocalStorage'
 
 const TodoContext = React.createContext()
 
-
 function TodoProvider( props ) {
 
     const [ search, setSearch ] = React.useState( '' )

@@ -20,7 +20,7 @@ function App() {
   // console.log( 'After UseEffect ')
   
   return (
-    <TodoProvider >
+    <TodoProvider>
       <IndexUI />
     </TodoProvider>
   )
