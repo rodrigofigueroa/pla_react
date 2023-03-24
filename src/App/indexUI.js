@@ -5,8 +5,11 @@ import { TodoSearch }       from '../TodoSearch'
 import { TodoList }         from '../TodoList'
 import { TodoItem }         from '../TodoItem'
 import { TodoCreateButton } from '../TodoCreateButton'
+import { Modal }            from '../Modal'
+
 
 const IndexUI = () => {
+  const { openModal, setOpenModal } = React.useContext( TodoContext )
   return (
     <React.Fragment> { /* <></> */}
       
@@ -54,7 +57,18 @@ const IndexUI = () => {
 
       </TodoContext.Consumer>
 
-      <TodoCreateButton />
+      <Modal>
+        {
+          openModal &&
+          (<div class="modal_overflow">
+                <p>Chi</p>
+          </div>)
+        }
+      </Modal>
+
+      <TodoCreateButton 
+        setOpenModal={ setOpenModal }
+      />
 
     </React.Fragment>
   )

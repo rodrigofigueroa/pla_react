@@ -1,7 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App/';
+import React    from 'react'
+import ReactDOM from 'react-dom/client'
+import App      from './App/'
+import './index.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -10,4 +10,5 @@ root.render(
       <h1>Buenaaaaaaas</h1>
       </App>
   </React.StrictMode>
-);
+)
+

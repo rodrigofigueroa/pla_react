@@ -1,4 +1,4 @@
-import React                      from 'react'
+import React, { useState }                      from 'react'
 import { useSaveInLocalStorage }  from './TodoLocalStorage'
 
 const TodoContext = React.createContext()
@@ -14,6 +14,7 @@ function TodoProvider( props ) {
       error
     } = useSaveInLocalStorage( 'TODOS_V1', [] )  
     // const [ item, setItem ] = useSaveInLocalStorage( 'PATITO_V1', 'PATITO' )  
+    const [ openModal, setOpenModal ] = useState( false )
 
     const totalCompleted = todos.filter( todo => !!todo.completed ).length
     const total = todos.length
@@ -54,7 +55,9 @@ function TodoProvider( props ) {
         todos,
         setTodos,
         completeTodo,
-        deleteTodo
+        deleteTodo,
+        openModal, 
+        setOpenModal
       }} >
 
         { props.children }
