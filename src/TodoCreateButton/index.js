@@ -1,13 +1,11 @@
 import React            from 'react'
 import './TodoCreateButton.css'
 
-export const TodoCreateButton = ({
-  setOpenModal
-}) => {
+export const TodoCreateButton = ({ setOpenModal, openModal }) => {
   
   const onHandleButton = ( e ) => {
     // console.log( e )
-    setOpenModal( true )
+    setOpenModal( prevState => !prevState )
   }
 
   return (

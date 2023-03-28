@@ -12,7 +12,7 @@ function TodoProvider( props ) {
       stringifiedAndUpdateState: setTodos,
       loading,
       error
-    } = useSaveInLocalStorage( 'TODOS_V1', [] )  
+    } = useSaveInLocalStorage( 'TODOS_V1', [{ text: 'Cortar Cebollas', completed: false }] )  
     // const [ item, setItem ] = useSaveInLocalStorage( 'PATITO_V1', 'PATITO' )  
     const [ openModal, setOpenModal ] = useState( false )
 
@@ -25,6 +25,14 @@ function TodoProvider( props ) {
     let todosFilter = ( search.length >= 1 ) ? toSearch : todos
 
     
+
+    const addTodo = ( text ) => {
+      let newTodos = [ ...todos ]
+      
+      newTodos.push({ completed: false, text })
+
+      setTodos( newTodos )
+    }
 
     const completeTodo = ( text ) => {
       let newTodos = [ ...todos ]
@@ -57,7 +65,8 @@ function TodoProvider( props ) {
         completeTodo,
         deleteTodo,
         openModal, 
-        setOpenModal
+        setOpenModal,
+        addTodo
       }} >
 
         { props.children }

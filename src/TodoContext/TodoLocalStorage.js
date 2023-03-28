@@ -8,7 +8,7 @@ function useSaveInLocalStorage ( saveItem, valueItem ) {
 
   React.useEffect(() => {
     // debugger
-    // setTimeout(() =>{
+    setTimeout(() =>{
 
       try {
         
@@ -35,7 +35,7 @@ function useSaveInLocalStorage ( saveItem, valueItem ) {
       }
       
 
-    // }, 1000 )
+    }, 1000 )
     
   }, [])
 

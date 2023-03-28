@@ -6,7 +6,7 @@ import { TodoList }         from '../TodoList'
 import { TodoItem }         from '../TodoItem'
 import { TodoCreateButton } from '../TodoCreateButton'
 import { Modal }            from '../Modal'
-
+import { Formulario }       from '../Formulario'
 
 const IndexUI = () => {
   const { openModal, setOpenModal } = React.useContext( TodoContext )
@@ -36,10 +36,10 @@ const IndexUI = () => {
           }) => (
             <TodoList>
               { error && <p>There was an error with your petition</p> }
-              { loading && <p>Loading...</p> }
               { ( !loading && !total ) && <p>Please add a To DO!</p> }
+              { loading && <p>Loading...</p> }
               {
-                todosFilter
+               !loading && todosFilter
                     .map(  (todo, idx ) => <TodoItem 
                       text={ todo.text } 
                       key={ todo.text } 
@@ -60,14 +60,15 @@ const IndexUI = () => {
       <Modal>
         {
           openModal &&
-          (<div class="modal_overflow">
-                <p>Chi</p>
+          (<div className="modal_overflow">
+                <Formulario />
           </div>)
         }
       </Modal>
 
       <TodoCreateButton 
         setOpenModal={ setOpenModal }
+        openModal={ openModal }
       />
 
     </React.Fragment>
