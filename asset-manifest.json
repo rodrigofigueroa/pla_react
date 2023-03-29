@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pla_react/static/css/main.e283441b.css",
+    "main.js": "/pla_react/static/js/main.26f27646.js",
+    "index.html": "/pla_react/index.html",
+    "main.e283441b.css.map": "/pla_react/static/css/main.e283441b.css.map",
+    "main.26f27646.js.map": "/pla_react/static/js/main.26f27646.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e283441b.css",
+    "static/js/main.26f27646.js"
+  ]
+}
