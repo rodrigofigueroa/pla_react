@@ -7,6 +7,9 @@ import { TodoItem }         from '../TodoItem'
 import { TodoCreateButton } from '../TodoCreateButton'
 import { Modal }            from '../Modal'
 import { Formulario }       from '../Formulario'
+import { Loading }          from '../Loading'
+import { TodoError }        from '../TodoError'
+import { TodoAddLoading }   from '../TodoAddLoading'
 
 const IndexUI = () => {
   const { openModal, setOpenModal } = React.useContext( TodoContext )
@@ -35,9 +38,9 @@ const IndexUI = () => {
             deleteTodo
           }) => (
             <TodoList>
-              { error && <p>There was an error with your petition</p> }
-              { ( !loading && !total ) && <p>Please add a To DO!</p> }
-              { loading && <p>Loading...</p> }
+              { error && <TodoError error={ error } /> }
+              { ( !loading && !total ) && <TodoAddLoading />}
+              { loading && <Loading /> }
               {
                !loading && todosFilter
                     .map(  (todo, idx ) => <TodoItem 
@@ -70,7 +73,7 @@ const IndexUI = () => {
         setOpenModal={ setOpenModal }
         openModal={ openModal }
       />
-
+    
     </React.Fragment>
   )
 }

@@ -1,4 +1,5 @@
-import React from 'react'
+import React        from 'react'
+import { TodoIcon } from '../TodoIcon'
 import './TodoItem.css'
 
 export const TodoItem = ( props ) => {
@@ -27,28 +28,28 @@ export const TodoItem = ( props ) => {
 
   return (
     <li className='TodoItem'>
-      
-      <span 
-        className={ `arrow_check ${ props.completed ? 'active' : '' }` }
-        // onClick={ onHandleCompleted }
-        onClick={ completeTodo }
-        >
+
+      <TodoIcon 
+       click={ completeTodo }
+       hover={ true }
+       estado={ `success ${ props.completed ? 'active' : '' }` }
+       >
           ✓
-      </span>
+      </TodoIcon>
       
       <p 
         className={ `${ props.completed ? 'done' : '' }` }
         >
           { props.text }
       </p>
-      
-      <span 
-        className={ `cross ${ props.completed ? '' : '' }` }
-        // onClick={ onHandleDelete }
-        onClick={ deleteTodo }
-        >
+
+      <TodoIcon 
+       click={ deleteTodo }
+       hover={ true }
+       estado={ 'danger' }
+       >
           x
-      </span>
+      </TodoIcon>
     </li>
   )
 }
